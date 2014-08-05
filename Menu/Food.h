@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSString *imageURL;
 //@property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) NSString *category;
 
 -(Food *)initWithAll:(NSString *)name :(NSString *)text :(UIImage *)imageURL :(NSNumber *)price;
 

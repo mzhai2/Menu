@@ -8,13 +8,23 @@
 
 #import "DetailCollectionViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "Food.h"
+#import "Factory.h"
 
 @implementation DetailCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    Factory *factory = [[Factory alloc] init];
+    self.foods = [factory foods];
+    self.foodsInCategory = [[NSMutableArray alloc] init];
+    for (Food *food in self.foods) {
+        if ([self.detailItem.foodNames containsObject:food.name]) {
+            [self.foodsInCategory addObject:food];
+        }
+    }
+    
     [self configureView];
 }
 
@@ -31,18 +41,27 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.detailItem.foods count];
+    return [self.foodsInCategory count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellID = @"CellID";
     CustomUICollectionViewCell *myCell = (CustomUICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
-    Food *food = [self.detailItem.foods objectAtIndex:indexPath.item];
-//    myCell.imageInCell.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[food objectForKey:@"imageURL"]]]];
-    [myCell.imageInCell sd_setImageWithURL:[NSURL URLWithString:[food objectForKey:@"imageURL"]]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
-    myCell.labelInCell.text = [food objectForKey:@"text"];
-    myCell.priceInCell.text = [NSString stringWithFormat:@"$%.2f", [[food objectForKey:@"price"] doubleValue]];
+    
+    
+    
+    
+    Food *food = [self.foodsInCategory objectAtIndex:indexPath.item];
+
+    [myCell.imageInCell sd_setImageWithURL:[NSURL URLWithString:food.imageURL]
+                          placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+    myCell.labelInCell.text = food.text;
+    myCell.priceInCell.text = [NSString stringWithFormat:@"$%.2f", [food.price doubleValue]];
+    
+//    [myCell.imageInCell sd_setImageWithURL:[NSURL URLWithString:[food objectForKey:@"imageURL"]]
+//                      placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+//    myCell.labelInCell.text = [food objectForKey:@"text"];
+//    myCell.priceInCell.text = [NSString stringWithFormat:@"$%.2f", [[food objectForKey:@"price"] doubleValue]];
     return myCell;
 }
 

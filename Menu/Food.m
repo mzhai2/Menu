@@ -10,7 +10,7 @@
 
 @implementation Food
 
--(Food *)initWithAll: (NSString *)name :(NSString *) text :(NSString *) imageURL :(NSNumber *) price{
+-(Food *)initWithAll:(NSString *)name :(NSString *)text :(NSString *)imageURL :(NSNumber *)price {
     Food *food = [self init];
     food.name = name;
     food.text = text;

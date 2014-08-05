@@ -15,6 +15,7 @@
 @interface MasterViewController ()
 
 @property NSArray *objects;
+@property NSArray *foods;
 @end
 
 @implementation MasterViewController
@@ -31,13 +32,15 @@
 
     self.detailCollectionViewController = (DetailCollectionViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-//    Factory *factory = [[Factory alloc] init];
-//    self.objects = [factory foodCategories];
-    self.manager = [[MenuManager alloc] init];
+    Factory *factory = [[Factory alloc] init];
+    self.objects = [factory foodCategories];
+    self.foods = [factory foods];
+    
+/*    self.manager = [[MenuManager alloc] init];
     self.manager.communicator = [[MenuCommunicator alloc] init];
     self.manager.communicator.delegate = self.manager;
     self.manager.delegate = self;
-    [self.manager fetchFoodCategories];
+    [self.manager fetchFoodCategories]; */
 }
 
 - (void)didReceiveFoodCategories:(NSArray *)foodCategories {

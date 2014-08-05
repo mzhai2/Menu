@@ -13,7 +13,9 @@
 
 @interface DetailCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (strong, nonatomic) FoodCategory* detailItem;
+@property (strong, nonatomic) FoodCategory *detailItem;
+@property (strong, nonatomic) NSArray *foods;
+@property (strong, nonatomic) NSMutableArray *foodsInCategory;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundUIImage;
 
 @end

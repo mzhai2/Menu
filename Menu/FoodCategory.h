@@ -14,6 +14,6 @@
 @property (strong, nonatomic) NSString *text;
 //@property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *imageURL;
-@property (strong, nonatomic) NSArray *foods;
-
+@property (strong, nonatomic) NSArray *foodNames;
+//@property (strong, nonatomic) NSArray *foods;
 @end

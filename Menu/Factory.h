@@ -12,5 +12,6 @@
 @interface Factory : NSObject
 
 -(NSArray *)foodCategories;
+-(NSArray *)foods;
 
 @end
